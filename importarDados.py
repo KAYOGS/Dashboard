@@ -1,19 +1,20 @@
-from logging import info
-
 import yfinance as yf
 import pandas as pd
 
 empresas = ["TOTS3.SA", "KLBN11.SA", "POSI3.SA", "MGLU3.SA", "LREN3.SA"]
-preco = yf.download(empresas, period="3y")
 
-if preco is not None and not preco.empty:
-    preco = preco.reset_index()
+print("Coletando historico de precos e indicadores dos ultimos 3 anos")
 
+historicos_lista = []
 listaIndicadores = []
 
 for e in empresas:
     ticker = yf.Ticker(e)
     info = ticker.info
+
+    historico_preco = ticker.history(period="3y")
+    historico_preco.insert(0, "Ticker", e)
+    historicos_lista.append(historico_preco)
 
     dadosFundamentalistas = {
         "Ticker": e,
@@ -27,8 +28,11 @@ for e in empresas:
     }
     listaIndicadores.append(dadosFundamentalistas)
 
-dataFrame = pd.DataFrame(listaIndicadores)
-dataFrame.to_csv("indicadores.csv", index=False)
+dataFrameIndicadores = pd.DataFrame(listaIndicadores)
+dataFrameIndicadores.to_csv("indicadores.csv", index=False)
 
-if preco is not None and not preco.empty:
-    preco.to_csv("db_historico_precos.csv", index=False)
+if historicos_lista:
+    db_historico_precos = pd.concat(historicos_lista).reset_index()
+    db_historico_precos.to_csv("db_historico_precos.csv", index=False)
+
+print("\nSucesso! Arquivos 'indicadores.csv' e 'db_historico_precos.csv' gerados.")

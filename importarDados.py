@@ -15,7 +15,6 @@ for e in empresas:
     historico_preco = ticker.history(period="3y")
     historico_preco.insert(0, "Ticker", e)
     historicos_lista.append(historico_preco)
-
     dadosFundamentalistas = {
         "Ticker": e,
         "Nome": info.get("longName"),
@@ -24,8 +23,15 @@ for e in empresas:
         "ROE%": info.get("returnOnEquity", 0) * 100 if info.get("returnOnEquity") else None,
         "ROA%": info.get("returnOnAssets", 0) * 100 if info.get("returnOnAssets") else None,
         "DividendYield%": info.get("dividendYield", 0) * 100 if info.get("dividendYield") else 0,
-        "MargemLiquida%": info.get("profitMargins", 0) * 100 if info.get("profitMargins") else None
+        "MargemLiquida%": info.get("profitMargins", 0) * 100 if info.get("profitMargins") else None,
+
+        "EV_EBITDA": info.get("enterpriseToEbitda"),
+        "MargemOperacional%": info.get("operatingMargins", 0) * 100 if info.get("operatingMargins") else None,
+        "LiquidezCorrente": info.get("currentRatio"),
+        "Divida_Patrimonio": info.get("debtToEquity"),
+        "LPA": info.get("trailingEps")
     }
+
     listaIndicadores.append(dadosFundamentalistas)
 
 dataFrameIndicadores = pd.DataFrame(listaIndicadores)

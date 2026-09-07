@@ -20,13 +20,13 @@ for e in empresas:
         "Nome": info.get("longName"),
         "PL": info.get("trailingPE"),
         "PVP": info.get("priceToBook"),
-        "ROE%": info.get("returnOnEquity", 0) * 100 if info.get("returnOnEquity") else None,
-        "ROA%": info.get("returnOnAssets", 0) * 100 if info.get("returnOnAssets") else None,
-        "DividendYield%": info.get("dividendYield", 0) * 100 if info.get("dividendYield") else 0,
-        "MargemLiquida%": info.get("profitMargins", 0) * 100 if info.get("profitMargins") else None,
+        "ROE%": info.get("returnOnEquity"),
+        "ROA%": info.get("returnOnAssets"),
+        "DividendYield%": info.get("dividendYield"),
+        "MargemLiquida%": info.get("profitMargins"),
 
         "EV_EBITDA": info.get("enterpriseToEbitda"),
-        "MargemOperacional%": info.get("operatingMargins", 0) * 100 if info.get("operatingMargins") else None,
+        "MargemOperacional%": info.get("operatingMargins"),
         "LiquidezCorrente": info.get("currentRatio"),
         "Divida_Patrimonio": info.get("debtToEquity"),
         "LPA": info.get("trailingEps")
@@ -35,10 +35,10 @@ for e in empresas:
     listaIndicadores.append(dadosFundamentalistas)
 
 dataFrameIndicadores = pd.DataFrame(listaIndicadores)
-dataFrameIndicadores.to_csv("indicadores.csv", index=False)
 
 if historicos_lista:
     db_historico_precos = pd.concat(historicos_lista).reset_index()
-    db_historico_precos.to_csv("db_historico_precos.csv", index=False)
+    dataFrameConsolidade = pd.merge(db_historico_precos, dataFrameIndicadores, on="Ticker")
+    dataFrameConsolidade.to_csv("db_historico_precos.csv", index=False)
 
-print("\nSucesso! Arquivos 'indicadores.csv' e 'db_historico_precos.csv' gerados.")
+print("\nSucesso! Arquivo 'db_historico_precos.csv' gerado.")

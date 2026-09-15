@@ -1,2 +1,8 @@
 /unisales.dash.20262
-.venv
+.venv/
+__pycache__/
+*.py[cod]
+**/.pbi/
+*.tmp.sqlite
+*.lock
+*.zip

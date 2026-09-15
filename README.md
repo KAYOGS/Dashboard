@@ -1,112 +1,59 @@
-## Produto 1
+# Dashboard financeiro 2023–2026
 
-### Projeto de Desenvolvimento de Dashboard Analítico
-## Objetivos
+O arquivo principal é **Dashboard_v2.pbix**. Abra-o no Power BI Desktop para consultar e editar o painel.
 
-Exercitar os seguintes conceitos abordados durante o desafio:
+## Conteúdo
 
-    Construção de dashboards analíticos
-    Storytelling com dados
-    Pesquisa e análise de indicadores financeiros
-    Interpretação de indicadores fundamentalistas
-    Produção de relatório técnico no formato acadêmico
+O dashboard analisa cinco empresas presentes no CSV fornecido:
 
-Enunciado
+- KLBN11 — papel, celulose e embalagens;
+- LREN3 — varejo de moda;
+- MGLU3 — varejo geral;
+- POSI3 — equipamentos e infraestrutura de tecnologia;
+- TOTS3 — software e serviços de tecnologia.
 
-Trabalho em grupo de até 4 participantes
+As empresas são de setores diferentes. A comparação deve ser interpretada como uma análise entre empresas, não como comparação de concorrentes do mesmo ramo.
 
+O período analisado é **2023, 2024, 2025 e 2026**. Os dados de 2026 representam os 12 meses encerrados em junho de 2026. A série diária original vai de 04/09/2023 a 04/09/2026, portanto 2023 e 2026 aparecem parcialmente no gráfico de preços.
 
-A análise fundamentalista é uma abordagem utilizada para avaliar empresas com base em seus indicadores financeiros e desempenho econômico. Esses indicadores permitem compreender aspectos como lucratividade, eficiência operacional e valor de mercado das empresas.
+## Indicadores
 
-Neste trabalho, os estudantes deverão realizar uma análise exploratória de empresas que compõem o índice Ibovespa, utilizando indicadores fundamentalistas e construindo painéis de visualização de dados.
+O painel utiliza somente cinco indicadores fundamentalistas:
 
-O objetivo é coletar dados financeiros de empresas listadas no Ibovespa, estruturar esses dados em um banco de dados e desenvolver dashboards analíticos no Power BI para acompanhar o desempenho histórico dessas empresas.
-Atividades
+| Indicador | Cálculo |
+|---|---|
+| P/L | Valor de mercado ÷ lucro da controladora |
+| P/VP | Valor de mercado ÷ patrimônio líquido da controladora |
+| ROE | Lucro da controladora ÷ patrimônio líquido da controladora |
+| ROA | Lucro consolidado ÷ ativo total |
+| Dividend Yield | Proventos por papel ÷ preço de fechamento |
 
-O trabalho consiste em:
+P/L e P/VP são exibidos como múltiplos. ROE, ROA e Dividend Yield são exibidos como percentuais. O P/L fica em branco quando a empresa apresenta prejuízo ou lucro igual a zero.
 
-    Selecionar 5 empresas que compõem o índice Ibovespa.
-    Coletar dados financeiros dessas empresas referentes aos últimos 3 anos.
-    Persistir os dados coletados em um banco de dados estruturado.
+## Funcionamento das páginas
 
-    Selecionar e calcular pelo menos 5 indicadores fundamentalistas para cada empresa.
-    Exemplos de indicadores recomendados:
-        P/L (Preço/Lucro)
-        P/VP (Preço/Valor Patrimonial)
-        ROE (Return on Equity)
-        ROA (Return on Assets)
-        Dividend Yield
-        Margem Líquida
-        Crescimento de Receita
+### Visão geral
 
-    Construir dashboards no Power BI para acompanhar os indicadores ao longo do tempo.
+Mostra os cinco indicadores em cartões, uma tabela comparativa e um gráfico de ROE por empresa. Os filtros permitem selecionar empresa e ano.
 
-    Criar um painel de preço das ações, permitindo visualizar a variação de preço ao longo do tempo com recurso de drill-down do ano até o nível diário.
+Sem filtro de ano, os cartões utilizam 2026. Quando várias empresas estão selecionadas, os cartões mostram a mediana dos valores. Os indicadores não são somados.
 
-    O dashboard deve possuir pelo menos 3 tipos diferentes de visualização, por exemplo:
-    Gráfico de linha (séries temporais)
-        Gráfico de barras ou colunas (comparações)
-        Tabela ou matriz
-        Cartões de indicadores (KPIs)
-    Desenvolver uma análise interpretativa dos resultados, discutindo o comportamento dos indicadores e possíveis diferenças entre as empresas analisadas.
+### Evolução 2023–2026
 
-## Entregáveis
+Apresenta um gráfico de linha para cada indicador. O eixo horizontal contém os quatro anos e cada empresa aparece como uma série separada.
 
-Os estudantes deverão entregar:
+### Preços da planilha
 
-Arquivo do Dashboard
+Utiliza o histórico diário do CSV original. Selecione uma empresa para visualizar o preço de fechamento. A hierarquia de data permite navegar por ano, trimestre, mês e dia.
 
-Arquivo do Power BI Desktop (.pbix) contendo os dashboards desenvolvidos.
+## Arquivos da pasta
 
-Artigo Acadêmico
+- `Dashboard_v2.pbix`: dashboard atual;
+- `Dashboard.pbix`: arquivo original;
+- `planilha com dados organizados.pbix`: base organizada original;
+- `db_historico_precos.csv`: CSV original;
+- `metricas_analise.pdf`: enunciado da atividade;
+- `COMO_FUNCIONA.md`: documentação detalhada dos dados e cálculos;
+- `importarDados.py`: script original de coleta.
 
-Produzir um artigo seguindo o Guia de Normalização da Unisales, contendo entre 7 e 10 páginas.
-
-O artigo deve incluir, no mínimo, as seguintes seções:
-
-    Introdução
-    Metodologia de coleta de dados
-    Construção dos indicadores
-    Desenvolvimento do dashboard
-    Análise dos resultados
-    Conclusão
-
-
-## Critérios Avaliativos
-
-A avaliação considerará os seguintes aspectos:
-
-Critério
-	
-
-Descrição
-
-Qualidade do Dashboard
-	
-
-Clareza visual, organização e escolha adequada de visualizações
-
-Escolha dos Indicadores
-	
-
-Relevância e correta aplicação dos indicadores fundamentalistas
-
-Análise dos Resultados
-	
-
-Capacidade de interpretar os dados e explicar os resultados
-
-Qualidade do Artigo
-	
-
-Estrutura, clareza e aderência ao padrão acadêmico
-
-Organização do Projeto
-	
-
-Coerência entre dados, indicadores e visualizações
-
-Cumprimento do Prazo
-	
-
-Entrega dentro do cronograma estabelecido
+Para levar o trabalho a outro computador e apenas abrir ou editar o painel, copie `Dashboard_v2.pbix`. Os dados utilizados já estão incorporados no arquivo.

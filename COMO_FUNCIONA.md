@@ -1,4 +1,6 @@
-# Como o Dashboard_v2 funciona
+# Como o Dashboard_v3 funciona
+
+O arquivo principal atual é `Dashboard_v3.pbix`. O `Dashboard_v2.pbix` foi mantido como versão anterior.
 
 ## Base de dados
 
@@ -64,6 +66,21 @@ Os proventos são agrupados pela data ex. O resultado é uma aproximação e pod
 
 P/L e P/VP são formatados como múltiplos. ROE, ROA e Dividend Yield são formatados como percentuais.
 
+## Indicadores complementares
+
+A página **Balanço e despesas** utiliza também os campos já existentes na base diária:
+
+- `LiquidezCorrente`: indicador de capacidade de pagamento no curto prazo;
+- `Divida_Patrimonio`: relação entre dívida e patrimônio;
+- `PVP`: preço em relação ao valor patrimonial;
+- `MargemOperacional%`: margem obtida pelas operações da empresa;
+- `MargemLiquida%`: parcela da receita convertida em resultado líquido;
+- `ROE%`: retorno sobre o patrimônio;
+- `ROA%`: retorno sobre os ativos;
+- `Date` e `Close`: data e preço de fechamento usados no histórico de preços.
+
+Como os indicadores fundamentalistas da base diária se repetem ao longo das datas de cada empresa, os gráficos comparativos usam um valor representativo por companhia, evitando a soma incorreta dessas métricas.
+
 ## Filtros e medidas
 
 Os filtros de empresa e ano controlam os cartões, a tabela e os gráficos.
@@ -85,6 +102,17 @@ Contém cinco gráficos de linha, um para cada indicador. As empresas aparecem c
 ### Preços da planilha
 
 Contém o histórico de fechamento da empresa selecionada e uma tabela diária. O usuário pode expandir a data de ano para trimestre, mês e dia.
+
+### Balanço e despesas
+
+Página adicionada no `Dashboard_v3.pbix`, composta por:
+
+- gráfico de balanço patrimonial com liquidez corrente, dívida sobre patrimônio e P/VP por empresa;
+- gráfico de despesas e lucro com margem operacional, margem líquida, ROE e ROA por empresa;
+- gráfico de linha com o preço de fechamento por data;
+- filtro de empresa aplicado às visualizações da página.
+
+Essa página reúne, em uma única visão, indicadores de saúde financeira, rentabilidade e comportamento do preço das ações.
 
 ## Limitações
 
